@@ -24,7 +24,6 @@ var controller = {
         foro.usuario_id = params.usuario_id;
         foro.nombreObra = params.nombreObra;
         foro.descripcion = params.descripcion;
-        foro.pendiente = params.pendiente;
         foro.imagen = null;
 
         foro.save()

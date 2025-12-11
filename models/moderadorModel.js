@@ -8,6 +8,8 @@ var ModeradorSchema = Schema({
     nombre: String,
     apellido: String,
     cedula: Number,
+    correo: String,
+    contrasenia: String,
     seguroMedico: Boolean,
     tipoSangre: { type: String, enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-',] },
     imagen: String

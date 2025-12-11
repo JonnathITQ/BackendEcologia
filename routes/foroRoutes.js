@@ -11,10 +11,10 @@ var multiPartyMiddleware = multiparty({ uploadDir: './uploads' });
 var auth = require('../middlewares/auth');
 
 enrutador.get('/listaForo', foroController.listaForo);
-enrutador.post('/guardarForo', auth, foroController.guardarForo);
-enrutador.put('/updateForo/:id', auth, foroController.actualizarForo);
-enrutador.delete('/eliminarForo/:id', auth, foroController.eliminarForo);
-enrutador.post('/subirImagenForo/:id', [auth, multiPartyMiddleware], foroController.subirImagenForo);
-enrutador.get('/verImagenForo/:imagen', foroController.verImagenForo);
+enrutador.post('/guardarForo', foroController.guardarForo);
+enrutador.put('/updateForo/:id', foroController.actualizarForo);
+enrutador.delete('/eliminarForo/:id', foroController.eliminarForo);
+enrutador.post('/subirImagenForo/:id', multiPartyMiddleware, foroController.subirImagenForo);
+enrutador.get('/verImagenForo/:imagen', multiPartyMiddleware, foroController.verImagenForo);
 
 module.exports = enrutador;

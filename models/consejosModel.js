@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 
 var ConsejosSchema = Schema({
     nombreConsejo: String,
-    mensajes: String
+    mensaje: String
 })
 
 module.exports = mongoose.model('Consejos', ConsejosSchema, 'consejos');

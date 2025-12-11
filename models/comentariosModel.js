@@ -7,6 +7,7 @@ var Schema = mongoose.Schema;
 var ComentariosSchema = Schema({
     usuario_id: { type: Schema.Types.ObjectId, ref: "Usuario" },
     galeria_id: { type: Schema.Types.ObjectId, ref: "Galeria" },
+    foro_id: { type: Schema.Types.ObjectId, ref: "Foro" },
     mensaje: String
 })
 

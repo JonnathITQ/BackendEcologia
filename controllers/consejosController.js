@@ -20,7 +20,7 @@ var controller = {
         var params = req.body;
 
         consejo.nombreConsejo = params.nombreConsejo;
-        consejo.mensajes = params.mensajes;
+        consejo.mensaje = params.mensaje;
 
         consejo.save()
             .then(consejoGuardado => {

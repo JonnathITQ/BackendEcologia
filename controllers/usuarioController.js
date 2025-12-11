@@ -102,12 +102,13 @@ var controller = {
         var fileName = 'Imagen no cargada'
 
         if (req.files) {
+            console.log("Subiendo imagen:", req.files);
             var filePath = req.files.imagen.path;
             var file_split = filePath.split('\\');
             var fileName = file_split[file_split.length - 1];
 
             var extSplit = fileName.split('\.');
-            var fileExt = extSplit[extSplit.length - 1];
+            var fileExt = extSplit[extSplit.length - 1].toLowerCase();
 
             if (fileExt == 'png' || fileExt == 'jpg' || fileExt == 'jpeg' || fileExt == 'gif') {
                 Usuario.findByIdAndUpdate(usuarioId, { imagen: fileName }, { new: true })
@@ -177,6 +178,7 @@ var controller = {
                 { expiresIn: "4h" }
             );
 
+            console.log('Enviando respuesta login:', { message: "Login exitoso", token, usuario });
             return res.status(200).send({
                 message: "Login exitoso",
                 token,
@@ -189,6 +191,38 @@ var controller = {
         }
 
     },
+
+    getUserIdByEmail: function (req, res) {
+        var correo = req.body.correo;
+        Usuario.findOne({ correo: correo })
+            .then(usuario => {
+                if (!usuario) return res.status(404).send({ message: 'El usuario no existe' });
+                return res.status(200).send({ userId: usuario._id });
+            })
+            .catch(err => {
+                return res.status(500).send({ message: 'Error al buscar usuario', error: err });
+            });
+    },
+
+    resetPassword: async function (req, res) {
+        var usuarioId = req.params.id;
+        var params = req.body;
+
+        if (params.contrasenia) {
+            params.contrasenia = await bcrypt.hash(params.contrasenia, 10);
+
+            Usuario.findByIdAndUpdate(usuarioId, { contrasenia: params.contrasenia }, { new: true })
+                .then(usuarioActualizado => {
+                    if (!usuarioActualizado) return res.status(404).send({ message: 'Usuario no encontrado' });
+                    return res.status(200).send({ message: 'Contraseña actualizada', usuario: usuarioActualizado });
+                })
+                .catch(err => {
+                    return res.status(500).send({ message: 'Error al actualizar', error: err });
+                });
+        } else {
+            return res.status(400).send({ message: 'Falta la contraseña' });
+        }
+    }
 }
 
 module.exports = controller;

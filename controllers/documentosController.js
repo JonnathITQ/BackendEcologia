@@ -39,7 +39,7 @@ var controller = {
 
         documento.titulo = params.titulo;
         documento.descripcion = params.descripcion;
-        documento.linkArticulo = null;
+        documento.linkArticulo = params.linkArticulo;
 
         documento.save()
             .then(documentoGuardado => {

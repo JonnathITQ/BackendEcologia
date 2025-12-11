@@ -4,7 +4,7 @@ var Comentarios = require('../models/comentariosModel');
 var controller = {
 
     listaComentarios: function (req, res) {
-        Comentarios.find({}).sort().populate('usuario_id').populate('galeria_id').exec()
+        Comentarios.find({}).sort().populate('usuario_id').populate('galeria_id').populate('foro_id').exec()
             .then(comentarios => {
                 if (!comentarios)
                     return res.status(404).send({ message: "No se encontraron comentarios" });
@@ -21,6 +21,7 @@ var controller = {
 
         comentario.usuario_id = params.usuario_id;
         comentario.galeria_id = params.galeria_id;
+        comentario.foro_id = params.foro_id;
         comentario.mensaje = params.mensaje;
 
         comentario.save()

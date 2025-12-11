@@ -12,10 +12,10 @@ var auth = require('../middlewares/auth');
 
 enrutador.get('/listaDoc', documentosController.listaDocumentos);
 enrutador.get('/documento/:id', documentosController.verDocumento);
-enrutador.post('/guardarDoc', auth, documentosController.guardarDocumento);
-enrutador.put('/updateDoc/:id', auth, documentosController.actualizarDocumento);
-enrutador.delete('/eliminarDoc/:id', auth, documentosController.eliminarDocumento);
-enrutador.post('/subirDocumento/:id', [auth, multiPartyMiddleware], documentosController.subirDocumento);
-enrutador.get('/verDocumento/:documento', documentosController.verDocumentoFile);
+enrutador.post('/guardarDoc', documentosController.guardarDocumento);
+enrutador.put('/updateDoc/:id', documentosController.actualizarDocumento);
+enrutador.delete('/eliminarDoc/:id', documentosController.eliminarDocumento);
+enrutador.post('/subirDocumento/:id', multiPartyMiddleware, documentosController.subirDocumento);
+enrutador.get('/verDocumento/:documento', multiPartyMiddleware, documentosController.verDocumentoFile);
 
 module.exports = enrutador;

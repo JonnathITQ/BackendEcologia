@@ -8,15 +8,17 @@ var enrutador = express.Router();
 var multiparty = require('connect-multiparty');
 var multiPartyMiddleware = multiparty({ uploadDir: './uploads' });
 
-var auth = require('../middlewares/auth');
 
-enrutador.get('/listaUsuario', auth, usuarioController.listaUsuario);
-enrutador.get('/usuario/:id', auth, usuarioController.verUsuario);
+
+enrutador.get('/listaUsuario', usuarioController.listaUsuario);
+enrutador.get('/usuario/:id', usuarioController.verUsuario);
 enrutador.post('/agregarUsuario', usuarioController.agregarUsuario);
-enrutador.put('/updateUsuario/:id', auth, usuarioController.actualizarUsuario);
-enrutador.delete('/borrarUsuario/:id', auth, usuarioController.borrarUsuario);
-enrutador.post('/subirImagenUsuario/:id', [auth, multiPartyMiddleware], usuarioController.subirImagenUsuario);
-enrutador.get('/verImagenUsuario/:imagen', usuarioController.verImagenUsuario);
+enrutador.put('/updateUsuario/:id', usuarioController.actualizarUsuario);
+enrutador.delete('/borrarUsuario/:id', usuarioController.borrarUsuario);
+enrutador.post('/subirImagenUsuario/:id', multiPartyMiddleware, usuarioController.subirImagenUsuario);
+enrutador.get('/getImagenUsuario/:imagen', multiPartyMiddleware, usuarioController.verImagenUsuario);
 enrutador.post('/loginUsuario', usuarioController.loginUsuario);
+enrutador.post('/getUserIdByEmail', usuarioController.getUserIdByEmail);
+enrutador.put('/resetPassword/:id', usuarioController.resetPassword);
 
 module.exports = enrutador;
