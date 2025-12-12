@@ -97,7 +97,7 @@ var controller = {
     },
 
     subirImagenAdmin: function (req, res) {
-        var empleadoId = req.params.id;
+        var adminId = req.params.id;
         var fileName = 'Imagen no cargada'
 
         if (req.files) {
@@ -109,14 +109,14 @@ var controller = {
             var fileExt = extSplit[extSplit.length - 1];
 
             if (fileExt == 'png' || fileExt == 'jpg' || fileExt == 'jpeg' || fileExt == 'gif') {
-                Admin.findByIdAndUpdate(empleadoId, { imagen: fileName }, { new: true })
-                    .then(empleadoActualizado => {
-                        if (!empleadoActualizado) {
+                Admin.findByIdAndUpdate(adminId, { imagen: fileName }, { new: true })
+                    .then(adminActualizado => {
+                        if (!adminActualizado) {
                             fs.unlink(filePath, (unlinkErr) => {
-                                return res.status(404).send({ message: 'El usuario no existe, no se subió la imagen' })
+                                return res.status(404).send({ message: 'El admin no existe, no se subió la imagen' })
                             });
                         } else {
-                            return res.status(200).send({ empleado: empleadoActualizado });
+                            return res.status(200).send({ admin: adminActualizado });
                         }
                     })
                     .catch(err => {
