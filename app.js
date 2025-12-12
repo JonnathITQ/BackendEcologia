@@ -13,6 +13,7 @@ var moderadorRoutes = require('./routes/moderadorRoutes');
 var tutorialRoutes = require('./routes/tutorialRoutes');
 var usuarioRoutes = require('./routes/usuarioRoutes');
 var comentariosRoutes = require('./routes/comentariosRoutes');
+var visitaRoutes = require('./routes/visitaRoutes');
 var cors = require('cors');
 
 app.use(cors());
@@ -38,5 +39,6 @@ app.use('/', moderadorRoutes);
 app.use('/', tutorialRoutes);
 app.use('/', usuarioRoutes);
 app.use('/', comentariosRoutes);
+app.use('/', visitaRoutes);
 
 module.exports = app;
