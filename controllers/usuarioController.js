@@ -173,6 +173,7 @@ var controller = {
                 {
                     id: usuario._id,
                     correo: usuario.correo,
+                    role: 'user'
                 },
                 "adriel",
                 { expiresIn: "4h" }
@@ -182,7 +183,7 @@ var controller = {
             return res.status(200).send({
                 message: "Login exitoso",
                 token,
-                usuario
+                usuario: { ...usuario._doc, role: 'user' }
             });
 
         } catch (error) {
