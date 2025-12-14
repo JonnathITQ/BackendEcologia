@@ -41,4 +41,7 @@ app.use('/', usuarioRoutes);
 app.use('/', comentariosRoutes);
 app.use('/', visitaRoutes);
 
+var path = require('path');
+app.use('/videos', express.static(path.join(__dirname, 'vid')));
+
 module.exports = app;

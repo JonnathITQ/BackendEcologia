@@ -11,7 +11,7 @@ var multiPartyMiddleware = multiparty({ uploadDir: './vid' });
 
 var auth = require('../middlewares/auth');
 
-enrutador.get('/listaTutorial', tutorialController.listaTutorial);
+enrutador.get('/listaTutoriales', tutorialController.listaTutorial);
 enrutador.get('/tutorial/:id', tutorialController.verTutorial);
 enrutador.post('/agregarTutorial', tutorialController.agregarTutorial);
 enrutador.put('/updateTutorial/:id', tutorialController.actualizarTutorial);

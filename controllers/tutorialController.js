@@ -133,6 +133,9 @@ var controller = {
         var file = req.params.video;
         var path_file = path.join(__dirname, '../vid', file);
 
+        console.log('Requesting video:', file);
+        console.log('Path:', path_file);
+
         fs.stat(path_file, function (err, stats) {
             if (!err && stats.isFile()) {
                 return res.sendFile(path.resolve(path_file));
