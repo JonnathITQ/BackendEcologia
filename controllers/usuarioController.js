@@ -104,7 +104,7 @@ var controller = {
         if (req.files) {
             console.log("Subiendo imagen:", req.files);
             var filePath = req.files.imagen.path;
-            var file_split = filePath.split('\\');
+            var file_split = filePath.split(/[\\/]/);
             var fileName = file_split[file_split.length - 1];
 
             var extSplit = fileName.split('\.');
