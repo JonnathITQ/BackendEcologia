@@ -16,7 +16,7 @@ enrutador.post('/agregarUsuario', usuarioController.agregarUsuario);
 enrutador.put('/updateUsuario/:id', usuarioController.actualizarUsuario);
 enrutador.delete('/borrarUsuario/:id', usuarioController.borrarUsuario);
 enrutador.post('/subirImagenUsuario/:id', multiPartyMiddleware, usuarioController.subirImagenUsuario);
-enrutador.get('/getImagenUsuario/:imagen', multiPartyMiddleware, usuarioController.verImagenUsuario);
+enrutador.get('/verImagenUsuario/:imagen', multiPartyMiddleware, usuarioController.verImagenUsuario);
 enrutador.post('/loginUsuario', usuarioController.loginUsuario);
 enrutador.post('/getUserIdByEmail', usuarioController.getUserIdByEmail);
 enrutador.put('/resetPassword/:id', usuarioController.resetPassword);
