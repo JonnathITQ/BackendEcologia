@@ -1,14 +1,20 @@
 'use strict'
+require('dotenv').config();
+const mongoose = require('mongoose');
+const app = require('./app');
 
-var mongoose = require('mongoose');
-var port = '3600';
+const PORT = process.env.PORT || 3600;
+const MONGO_URI = process.env.MONGO_URI;
 
-mongoose.promise = global.Promise;
-var app = require('./app');
+mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb+srv://adrielprogramacion:adriel@proyectos.wgiooun.mongodb.net/ArteRecicla').then(() => {
-    console.log('Base de datos encontrada en MONGODB ATLAS')
-    app.listen(port, () => {
-        console.log('BDD conectada de manera correcta')
+mongoose.connect(MONGO_URI)
+    .then(() => {
+        console.log('MongoDB conectado correctamente');
+        app.listen(PORT, () => {
+            console.log('Servidor corriendo en puerto', PORT);
+        });
     })
-})
+    .catch(err => {
+        console.error('Error al conectar MongoDB:', err);
+    });
